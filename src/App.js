@@ -1,24 +1,27 @@
 import  Container  from "react-bootstrap/Container";
-import Header from "./components/Header";
+import { BrowserRouter,Routes,Route,Navigate } from "react-router-dom";
+import Header from './components/Header'
+import FeedPage from './pages/FeedPage';
+import ExplorePage from "./pages/ExplorePage";
+import LoginPage from "./pages/LoginPage";
+
 
 function App() {
-  const post = {
-    id:1,
-    text:"Hello World",
-    timestamp:'a minute ago',
-    author:{
-      username:'susan'
-    }
-  }
+  
   return (
     <Container fluid className="App">
-    
+   <BrowserRouter>
    <Header/>
-   <p>
-    <b>{post.author.username}</b> &mdash; {post.timestamp}
-    <br/>
-    {post.text}
-   </p>
+   <Routes>
+    <Route path='/' element={<FeedPage/>}/>
+    <Route path='/explore' element={<ExplorePage/>}/>
+    <Route path='/login' element={<LoginPage/>}/>
+    <Route path='*' element={<Navigate to='/'/>}/>
+   </Routes>
+   </BrowserRouter>   
+   
+ 
+   
    </Container>
   );
 }
